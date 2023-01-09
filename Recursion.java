@@ -1,5 +1,5 @@
 public class Recursion{
-  
+
    /*Print all words that are made of the letters a-e inclusive.
     *@param length : the length of the words that are to be printed
     */
@@ -13,9 +13,15 @@ public class Recursion{
     *@param word   : the partial word so far.
     */
     public static void printAllWords(int length,String word){
-      //WRITE THIS METHOD
+      if(word.length() == length) {
+        System.out.println(word);
+      } else {
+        for(char c = 'a'; c < 'z'; c++) {
+          printAllWords(length, word + c);
+        }
+      }
     }
-  
+
   /*Print all words that are made of the characters in the array of letters.
     *There may not be consecutive equal letters, so:
     *aax is not allowed, but axa is allowed.
@@ -35,6 +41,18 @@ public class Recursion{
     *@param letters: the letters you should be using
     */
     public static void printNoDoubleLetterWords(int length,String word,char[]letters){
-      //WRITE THIS METHOD
+      if(word.length() == length) {
+        System.out.println(word);
+      } else {
+        for(int i = 0; i < letters.length; i++) {
+          if(word.length() > 0) {
+            if(word.charAt(word.length()-1) != letters[i]) {
+              printNoDoubleLetterWords(length, word + letters[i], letters);
+            }
+          } else {
+              printNoDoubleLetterWords(length, word + letters[i], letters);
+          }
+        }
+      }
     }
 }

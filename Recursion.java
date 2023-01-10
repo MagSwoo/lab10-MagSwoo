@@ -55,4 +55,64 @@ public class Recursion{
         }
       }
     }
+
+    public static String toWords(int n) {
+      int digits = ("" + n).length();
+      if(digits > 12) {
+
+      } else if(digits > 9) {
+
+      } else if(digits > 6) {
+
+      } else if(digits > 3) {
+
+      } else if(digits > 2) {
+
+      } else if(digits > 1) {
+        if(n < 20) {
+          return digit(n - 10*(n/10)) + "teen";
+        } else if(n < 30) {
+          return "twenty-" + digit(n - 10*(n/10));
+        } else if(n < 40) {
+          return "thirty-" + digit(n - 10*(n/10));
+        } else if(n >= 50 && n < 60) {
+          return "fifty-" + digit(n - 10*(n/10));
+        } else {
+          return digit(n/10) + "ty-" + digit(n - 10*(n/10));
+        }
+      } else {
+        return digit(n);
+      }
+
+    }
+
+    public static String digit(int n) {
+      if(n == 1) {
+        return "one";
+      }
+      if(n == 2) {
+        return "two";
+      }
+      if(n == 3) {
+        return "three";
+      }
+      if(n == 4) {
+        return "four";
+      }
+      if(n == 5) {
+        return "five";
+      }
+      if(n == 6) {
+        return "six";
+      }
+      if(n == 7) {
+        return "seven";
+      }
+      if(n == 8) {
+        return "eight";
+      }
+      if(n == 9) {
+        return "nine";
+      }
+    }
 }

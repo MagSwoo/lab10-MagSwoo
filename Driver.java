@@ -5,6 +5,8 @@ public class Driver {
       letters[c - 'a'] = c;
     }
     //Recursion.printAllWords(6);
-    Recursion.printNoDoubleLetterWords(4, letters);
+    Recursion.printNoDoubleLetterWords(4, new char[] {'a', 'b', 'c', 'd'});
+    int integer = 3;
+    System.out.println((integer + "").length());
   }
 }

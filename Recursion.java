@@ -40,6 +40,7 @@ public class Recursion{
     *@param word   : the partial word so far.
     *@param letters: the letters you should be using
     */
+
     public static void printNoDoubleLetterWords(int length,String word,char[]letters){
       if(word.length() == length) {
         System.out.println(word);
@@ -56,63 +57,31 @@ public class Recursion{
       }
     }
 
+    private static String[] ones = new String[] {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    private static String[] tens = new String[] {"", "teen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};
     public static String toWords(int n) {
       int digits = ("" + n).length();
       if(digits > 12) {
-
+        return null;
       } else if(digits > 9) {
-
+        return toWords(n/1000000000) + " billion " + toWords(n - 1000000000*(n/1000000000));
       } else if(digits > 6) {
-
+        return toWords(n/1000000) + " million " + toWords(n - 1000000*(n/1000000));
       } else if(digits > 3) {
-
+        return toWords(n/1000) + " thousand " + toWords(n - 1000*(n/1000));
       } else if(digits > 2) {
-
+        if((n - 100*(n/100))/10 != 0) {
+          return ones[n/100] + " hundred and " + toWords(n - 100*(n/100));
+        }
+        return ones[n/100] + " hundred " + toWords(n - 100*(n/100));
       } else if(digits > 1) {
         if(n < 20) {
-          return digit(n - 10*(n/10)) + "teen";
-        } else if(n < 30) {
-          return "twenty-" + digit(n - 10*(n/10));
-        } else if(n < 40) {
-          return "thirty-" + digit(n - 10*(n/10));
-        } else if(n >= 50 && n < 60) {
-          return "fifty-" + digit(n - 10*(n/10));
+          return ones[n - 10*(n/10)] + "teen";
         } else {
-          return digit(n/10) + "ty-" + digit(n - 10*(n/10));
+          return tens[n/10] + "-" + ones[n - 10*(n/10)];
         }
       } else {
-        return digit(n);
-      }
-
-    }
-
-    public static String digit(int n) {
-      if(n == 1) {
-        return "one";
-      }
-      if(n == 2) {
-        return "two";
-      }
-      if(n == 3) {
-        return "three";
-      }
-      if(n == 4) {
-        return "four";
-      }
-      if(n == 5) {
-        return "five";
-      }
-      if(n == 6) {
-        return "six";
-      }
-      if(n == 7) {
-        return "seven";
-      }
-      if(n == 8) {
-        return "eight";
-      }
-      if(n == 9) {
-        return "nine";
+        return ones[n];
       }
     }
 }

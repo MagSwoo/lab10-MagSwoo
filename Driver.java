@@ -10,5 +10,7 @@ public class Driver {
     System.out.println((integer + "").length());
 
     System.out.println(Recursion.toWords(Integer.MAX_VALUE));
+    System.out.println(Recursion.toWords(0));
+    System.out.println(Recursion.toWords(10000000));
   }
 }

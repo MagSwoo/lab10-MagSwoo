@@ -56,32 +56,38 @@ public class Recursion{
         }
       }
     }
-
-    private static String[] ones = new String[] {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-    private static String[] tens = new String[] {"", "ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};
     public static String toWords(int n) {
       if(n == 0) {
         return "zero";
       }
+      return toWords2(n);
+    }
+    
+    private static String[] ones = new String[] {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    private static String[] tens = new String[] {"", "ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    public static String toWords2(int n) {
       int digits = ("" + n).length();
       if(digits > 12) {
         return null;
       } else if(digits > 9) {
-        return toWords(n/1000000000) + "billion" + toWords(n - 1000000000*(n/1000000000));
+        return toWords2(n/1000000000) + " billion " + toWords2(n - 1000000000*(n/1000000000));
       } else if(digits > 6) {
-        return toWords(n/1000000) + "million" + toWords(n - 1000000*(n/1000000));
+        return toWords2(n/1000000) + " million " + toWords2(n - 1000000*(n/1000000));
       } else if(digits > 3) {
-        return toWords(n/1000) + "thousand" + toWords(n - 1000*(n/1000));
+        return toWords2(n/1000) + " thousand " + toWords2(n - 1000*(n/1000));
       } else if(digits > 2) {
         if((n - 100*(n/100))/10 != 0) {
-          return ones[n/100] + " hundred and" + toWords(n - 100*(n/100));
+          return ones[n/100] + " hundred and " + toWords2(n - 100*(n/100));
         }
-        return ones[n/100] + " hundred" + toWords(n - 100*(n/100));
+        return ones[n/100] + " hundred " + toWords2(n - 100*(n/100));
       } else if(digits > 1) {
         if(n < 20 && n > 10) {
           return ones[n - 10*(n/10)] + "teen";
         } else {
-          return tens[n/10] + "-" + ones[n - 10*(n/10)] + " ";
+          if(n - 10*(n/10) == 0) {
+            return tens[n/10];
+          }
+          return tens[n/10] + "-" + ones[n - 10*(n/10)];
         }
       } else {
         return ones[n];
